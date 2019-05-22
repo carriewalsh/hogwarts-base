@@ -2,7 +2,12 @@
 
 <% facade.students.each do |student| %>
 <div class="student">
-  <p class="name"><%= student[:name] %></p> - <p class="id"><%= student[:id] %></p>
-
+  <p class="name">
+    Name: <%= student["name"] %>
+  </p>
+  <p class="id">
+    ID: <%= student["id"] %>
+  </p>
+  <br>
 </div>
 <% end %>
