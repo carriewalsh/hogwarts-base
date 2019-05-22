@@ -1,4 +1,5 @@
 class SearchFacade
+  attr_reader :house
 
   def initialize(house)
     @house = house
@@ -13,18 +14,18 @@ class SearchFacade
   end
 
   def house_name
-    service["name"]
+    @house
   end
 
 
   private
 
     def service
-      @_service ||= SearchService.new(@house).jsonificus
+      @_service ||= SearchService.new(@house).jsonificus_students
     end
 
     def accio_students
-      service["students"]
+      service
     end
 
 end

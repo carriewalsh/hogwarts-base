@@ -1,7 +1,7 @@
 class SearchService
 
-  def initialize(id)
-    @id = id
+  def initialize(house)
+    @house = house
   end
 
   def conn(params)
@@ -12,19 +12,31 @@ class SearchService
   end
 
   def accio_houses
-    conn("").get
+    conn("").get.body
   end
 
-  def accio_students(id)
-    conn("/#{id}").get
+  def accio_students(house)
+    conn("/#{accio_id(house)}").get.body
   end
 
-  def jsonificus
-    if @id.nil?
-      JSON.parse(accio_houses.body)
-    else
-      binding.pry
-      JSON.parse(accio_students(@id).body)
+  def jsonificus_students
+    JSON.parse(accio_students(@house))
+  end
+
+  def jsonificus_house
+    JSON.parse(accio_houses)
+  end
+
+  private
+
+    def accio_id(param)
+      houses = jsonificus_house
+      @_id = nil
+      houses.each do |house|
+        if house["name"] == param
+          @_id = house["id"]
+        end
+      end
+      @_id
     end
-  end
 end
