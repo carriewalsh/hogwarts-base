@@ -1,5 +1,8 @@
 <h1>Slytherin - <%= facade.student_count %> Students</h1>
 
 <% facade.students.each do |student| %>
-<h3><%= student.name %> - <%= student.id %></h3>
+<div class="student">
+  <p class="name"><%= student[:name] %></p> - <p class="id"><%= student[:id] %></p>
+
+</div>
 <% end %>

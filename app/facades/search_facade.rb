@@ -1,22 +1,30 @@
 class SearchFacade
 
+  def initialize(house)
+    @house = house
+  end
+
   def student_count
-    accio_students.count
+    students.count
   end
 
   def students
     accio_students
   end
 
+  def house_name
+    service["name"]
+  end
+
 
   private
 
     def service
-      SearchService.new()
+      @_service ||= SearchService.new(@house).jsonificus
     end
 
     def accio_students
-
+      service["students"]
     end
 
 end
