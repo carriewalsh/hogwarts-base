@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    locals: {
+    render locals: {
       facade: SearchFacade.new
     }
   end
